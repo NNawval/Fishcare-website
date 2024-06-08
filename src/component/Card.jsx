@@ -7,7 +7,7 @@ import turnidity from "../assets/turnidity.png";
 import o2 from "../assets/o2.png";
 import atom from "../assets/atom.png";
 import amonia from "../assets/amonia.png";
-const Card = () => {
+const Card = (props) => {
   return (
     <div className="flex flex-col min-h-[450px] my-6 bg-white rounded-[24px] border-2 shadow-lg p-6 mobile:p-0">
       <div className=''>
@@ -41,7 +41,7 @@ const Card = () => {
           <div className='grid grid-cols-3 gap-4 h-full content-center py-10 min-w-[400px] md:min-w-[300px]'>
             <div className='h-24 w-24 shadow-lg flex justify-center items-center rounded-2xl flex-col'>
               <img src={suhu} className='w-6' />
-              <text className='font-proxima text-[14px] font-bold'>28°C</text>
+              <text className='font-proxima text-[14px] font-bold'>{props.temperature}°C</text>
               <text className='font-proxima text-[10px] text-[#979797]'>Temperature</text>
             </div>
             <div className='h-24 w-24 shadow-lg flex justify-center items-center rounded-2xl flex-col'>
