@@ -3,6 +3,7 @@ import Card from './component/Card'
 import News from './component/News'
 import { ref, onValue } from "firebase/database";
 import db from '../FirebaseConfig'
+import Dashboard from './component/Dashboard';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -26,21 +27,15 @@ function App() {
   },[])
 
   return (
-
-    <div className="flex flex-col md:flex-row p-8 xl:p-32 mobile:p-0">
-      <div className="grow order-2 md:order-1 w-auto md:w-[60%] md:mr-4 ">
-        <text className='font-proxima text-[36px] my-20 font-bold'>Danang’s Aquarium</text>
+    <div className="flex flex-col items-center lg:justify-between lg:flex-row lg:items-start p-20 gap-10">
+      <div className='flex flex-col gap-4 lg:w-[800px]'>
+        <p className='font-proxima text-[36px] font-bold'>Danang’s Aquarium</p>
         <Card temperature={temperature}/>
-        <text className='font-proxima text-[36px] my-20 font-bold' >News</text>
+        <p className='font-proxima text-[36px] font-bold' >News</p>
         <News/>
       </div>
-      <div className="order-1 md:order-2 w-auto md:w-[40%] ">
-        Konten kanan
-        <text>{temperature} a</text>
-      </div>
+      <Dashboard />
     </div>
-
-
   )
 }
 

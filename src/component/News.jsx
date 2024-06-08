@@ -8,34 +8,21 @@ const News = () => {
     { url : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjWf2VHAvUeh5IGsv09FJrH-4KvsI_kaZtbg&s' , category: 'Category 3', title: 'Title 3', date: '2024-06-07' }
   ]);
   return (
-    <div className="flex flex-col min-h-[450px] bg-white rounded-[24px] border-2 shadow-lg my-6 px-12 p-6 mobile:p-2">
-      <div className='flex flex-col my-4 '>
+    <div className="flex flex-col bg-white rounded-[24px] border-2 shadow-lg px-12 p-6">
+      <div className='flex flex-col gap-4'>
       {dataNews.map((data, index) => (
-        <div key={index}>
-        <div className='flex flex-row xl:max-h-[170px]'>
-          <div className='w-auto h-auto'>
-            <img src={data.url} className='w-full h-full' />
+        <div key={index} className='flex'>
+          <img src={data.url} className='hidden md:block w-[250px] h-[150px] rounded-[12px] object-cover' />
+          <div className='flex flex-col h-full px-6 py-4 justify-between'>
+            <div>
+              <p className='font-proxima text-[12px] text-[#979797]'>{data.category}</p>
+              <p className='font-proxima text-[16px] font-bold pt-2'>{data.title}</p>
+            </div>
+            <p className='font-proxima text-[12px] text-[#979797]'>{data.date}</p>
           </div>
-          <div className='flex flex-col h-full pl-6'>
-  <text className='font-proxima text-[12px] text-[#979797]'>{data.category}</text>
-  <text className='font-proxima text-[16px] font-bold pt-4'>{data.title}</text>
-  <div className='self-end'>
-    <text className='font-proxima text-[12px] text-[#979797] self-end'>{data.date}</text>
-  </div>
-</div>
-
-        </div>
         </div>
       ))}
-
-
-
-
-
-
-
       </div>
-
     </div>
   );
 };
