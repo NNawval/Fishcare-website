@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
-import arrow from '../assets/arrow-down.png';
+import { ref,set } from "firebase/database";
+import db from "../../FirebaseConfig"
+// import arrow from '../assets/arrow-down.png';
 
 const Dashboard = () => {
     const [isChange, setIsChange] = useState(false)
@@ -62,6 +64,27 @@ const Dashboard = () => {
         }
     }
 
+    const handleFeed = ()=>{
+            const databaseRef = ref(db,'test/Feed');
+            set(databaseRef, true)
+            .then(() => {
+            console.log("Feed Now triggered. Setting to true.");
+            // Revert to false after 5 seconds
+            setTimeout(() => {
+                set(databaseRef, false)
+                .then(() => {
+                  console.log("Reverted feed to false.");
+                })
+                .catch((error) => {
+                  console.error("Error reverting feed to false:", error);
+                });
+            }, 10000);
+          })
+          .catch((error) => {
+            console.error("Error setting feed to true:", error);
+          });            
+    }
+
     return (
     <div className="flex items-center flex-col bg-white h-auto rounded-[24px] border-2 shadow-lg p-10 lg:w-[400px]">
         <p className='font-proxima text-[20px] tracking-wide text-center'>Automatically serve food every </p>
@@ -97,7 +120,7 @@ const Dashboard = () => {
         </button>
         <p className='font-proxima text-[20px] tracking-wide'>or</p>
         <p className='font-proxima text-[20px] tracking-wide'>Serve food manually</p>
-        <button className='my-4 w-full border bg-[#7BC0FF] rounded-[8px] py-3 shadow-md '>
+        <button className='my-4 w-full border bg-[#7BC0FF] rounded-[8px] py-3 shadow-md ' onClick={handleFeed}>
             <p className='font-proxima text-[16px] text-white tracking-wide'>Feed Now</p>
         </button>
         <div className='flex justify-between w-full'>
