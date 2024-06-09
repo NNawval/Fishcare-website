@@ -4,10 +4,13 @@ import News from './component/News'
 import { ref, onValue } from "firebase/database";
 import db from '../FirebaseConfig'
 import Dashboard from './component/Dashboard';
+import axios from 'axios';
 
 function App() {
   // const [count, setCount] = useState(0)
   const [temperature, setTemperature] = useState();
+  const [news,setNews] = useState([]);
+
   
   async function readDataTemperature() {
     const databaseRef = ref(db,'test/temperature');
@@ -22,8 +25,19 @@ function App() {
     
   }
 
+  async function getNews(){
+    const response = await axios.get('https://newsapi.org/v2/everything?q=fish&apiKey=a3e47262b4244628bca6522058c3a451');
+    const berita = [];
+    const articles = response.data.articles;
+    berita.push(articles[7], articles[1], articles[2]);
+    console.log(berita);
+    setNews(berita);
+    console.log(berita);
+  }
+
   useEffect(()=>{
     readDataTemperature();
+    getNews();
   },[])
 
   return (
@@ -32,7 +46,7 @@ function App() {
         <p className='font-proxima text-[36px] font-bold'>Danang’s Aquarium</p>
         <Card temperature={temperature}/>
         <p className='font-proxima text-[36px] font-bold' >News</p>
-        <News/>
+        <News berita = {news}/>
       </div>
       <Dashboard />
     </div>
