@@ -35,8 +35,7 @@ function App() {
         <News/>
       </div>
       <div className="order-1 md:order-2 w-auto md:w-[40%] ">
-        Konten kanan
-        <text>{temperature} a</text>
+        
       </div>
     </div>
 
